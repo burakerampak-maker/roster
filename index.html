@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f0">
+  <title>Jadwal Pelayanan PPGT Jemaat Burake Rampak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%231c493f'/%3E%3Cpath d='M12 12h7v7h-7zm9 0h7v7h-7zm-9 9h7v7h-7zm9 0h7v7h-7z' fill='%23d9f06b'/%3E%3C/svg%3E">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1e302b;
+      --muted: #75827c;
+      --line: #e4e9e2;
+      --paper: #ffffff;
+      --canvas: #f4f6f0;
+      --forest: #1c493f;
+      --forest-deep: #153b33;
+      --lime: #d9f06b;
+      --coral: #e8795b;
+      --blue: #e9f1f7;
+      --blue-ink: #3e6680;
+      --gold: #fbf1d9;
+      --gold-ink: #8b6a1c;
+      --green: #e6f1e9;
+      --green-ink: #356b4c;
+      --rest: #f0f2ee;
+      --rest-ink: #6d7770;
+      --shadow: 0 12px 32px rgba(31, 54, 44, .055);
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-width: 360px;
+      margin: 0;
+      color: var(--ink);
+      background-color: var(--canvas);
+      background-image: linear-gradient(rgba(38, 67, 54, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(38, 67, 54, .025) 1px, transparent 1px);
+      background-size: 28px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+    }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { max-width: 1480px; margin: 0 auto; padding: 0 42px 48px; }
+    .topbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(30, 48, 43, .12);
+    }
+    .brand { display: flex; align-items: center; gap: 11px; color: var(--ink); text-decoration: none; }
+    .brand-mark { width: 42px; height: 42px; position: relative; display: grid; flex: 0 0 42px; place-items: center; overflow: hidden; color: var(--lime); background: var(--forest); border: 1px solid rgba(30, 48, 43, .12); border-radius: 50%; }
+    .brand-mark svg { width: 18px; height: 18px; }
+    .brand-mark img { display: none; width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+    .brand-mark.has-logo { background: #fff; }
+    .brand-mark.has-logo svg { display: none; }
+    .brand-mark.has-logo img { display: block; }
+    .brand-name { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: 0; }
+    .brand-name span { font-weight: 500; color: var(--muted); }
+    .top-meta { display: flex; align-items: center; gap: 9px; color: var(--muted); font-size: 12px; }
+    .live-dot { width: 7px; height: 7px; display: inline-block; background: #83b947; border-radius: 50%; }
+    main { padding-top: 34px; }
+    .heading-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 27px; }
+    .eyebrow { display: flex; align-items: center; gap: 8px; margin: 0 0 9px; color: var(--forest); font-size: 11px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase; }
+    .eyebrow svg { width: 14px; height: 14px; }
+    h1 { margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: clamp(27px, 3vw, 36px); font-weight: 600; letter-spacing: 0; line-height: 1.12; }
+    .subtitle { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
+    .primary-actions { display: flex; align-items: center; gap: 9px; }
+    .button { min-height: 40px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0 14px; border: 1px solid var(--line); border-radius: 7px; color: var(--ink); background: var(--paper); font-size: 12px; font-weight: 700; transition: background .15s, transform .15s, border-color .15s; }
+    .button:hover { border-color: #b9c8bf; background: #fbfcfa; }
+    .button:active { transform: translateY(1px); }
+    .button svg { width: 15px; height: 15px; }
+    .button-primary { color: #fff; border-color: var(--forest); background: var(--forest); }
+    .button-primary:hover { border-color: var(--forest-deep); background: var(--forest-deep); }
+    .button-primary svg { color: var(--lime); }
+    .button-quiet { width: 38px; min-width: 38px; height: 38px; min-height: 38px; padding: 0; }
+    .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 20px; }
+    .metric { min-height: 94px; display: flex; align-items: center; justify-content: space-between; padding: 17px 19px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); box-shadow: var(--shadow); }
+    .metric-label { margin: 0 0 8px; color: var(--muted); font-size: 11px; font-weight: 600; }
+    .metric-value { margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 27px; font-weight: 600; line-height: 1; }
+    .metric-icon { width: 36px; height: 36px; display: grid; place-items: center; border-radius: 7px; color: var(--forest); background: #edf3e8; }
+    .metric:nth-child(2) .metric-icon { color: var(--blue-ink); background: var(--blue); }
+    .metric:nth-child(3) .metric-icon { color: #946c24; background: var(--gold); }
+    .metric-icon svg { width: 17px; height: 17px; }
+    .schedule-panel { overflow: hidden; border: 1px solid var(--line); border-radius: 9px; background: var(--paper); box-shadow: var(--shadow); }
+    .panel-toolbar { min-height: 65px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 17px; border-bottom: 1px solid var(--line); }
+    .week-controls { min-width: 0; display: flex; align-items: center; gap: 7px; }
+    .week-label { min-width: 190px; margin-left: 5px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; }
+    .week-label small { display: block; margin-top: 3px; color: var(--muted); font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; }
+    .toolbar-actions { display: flex; align-items: center; gap: 8px; }
+    .toolbar-actions .button { min-height: 36px; font-size: 11px; }
+    .table-scroll { overflow: auto; scrollbar-color: #c6d1c8 transparent; scrollbar-width: thin; }
+    table { width: 100%; min-width: 940px; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+    th, td { border-right: 1px solid #edf0eb; border-bottom: 1px solid #edf0eb; }
+    th:last-child, td:last-child { border-right: 0; }
+    thead th { height: 61px; padding: 10px 8px; background: #fafbf9; color: var(--muted); font-size: 10px; font-weight: 600; text-align: center; }
+    thead th:first-child { width: 220px; padding-left: 20px; text-align: left; }
+    .day-name { display: block; margin-bottom: 4px; color: var(--ink); font-size: 11px; font-weight: 700; }
+    .day-date { display: block; font-size: 10px; }
+    .day-today .day-name, .day-today .day-date { color: var(--forest); }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody td { height: 66px; padding: 9px 7px; text-align: center; }
+    tbody td:first-child { padding: 8px 12px 8px 18px; text-align: left; }
+    .employee-cell { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .avatar { width: 32px; height: 32px; flex: 0 0 32px; display: grid; place-items: center; border-radius: 50%; color: var(--forest); background: #e9f0e6; font-size: 10px; font-weight: 700; text-transform: uppercase; }
+    tbody tr:nth-child(3n + 2) .avatar { color: #54738a; background: #eaf0f3; }
+    tbody tr:nth-child(3n) .avatar { color: #9a6655; background: #f5ece7; }
+    .employee-info { min-width: 0; flex: 1; }
+    .employee-name { width: 100%; padding: 0; border: 0; outline: 0; color: var(--ink); background: transparent; font-size: 11px; font-weight: 700; text-overflow: ellipsis; }
+    .employee-name:focus { box-shadow: 0 1px 0 var(--forest); }
+    .employee-role { width: 100%; margin-top: 3px; padding: 0; border: 0; outline: 0; color: var(--muted); background: transparent; font-size: 10px; text-overflow: ellipsis; }
+    .employee-role:focus { box-shadow: 0 1px 0 #9aa69f; }
+    .remove-person { width: 25px; height: 25px; display: grid; flex: 0 0 25px; place-items: center; padding: 0; border: 0; border-radius: 5px; color: #9ba59f; background: transparent; opacity: 0; transition: opacity .15s, color .15s, background .15s; }
+    tr:hover .remove-person, .remove-person:focus-visible { opacity: 1; }
+    .remove-person:hover { color: #a63e31; background: #faece8; }
+    .remove-person svg { width: 14px; height: 14px; }
+    .shift-select { width: 100%; max-width: 84px; height: 31px; padding: 0 18px 0 8px; border: 1px solid transparent; border-radius: 5px; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='m2 4 3 3 3-3' fill='none' stroke='%2375827c' stroke-width='1.3'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 6px center; font-size: 10px; font-weight: 700; text-align: center; text-align-last: center; cursor: pointer; }
+    .shift-select:focus { border-color: #95aa9c; outline: 0; }
+    .shift-pagi { color: var(--green-ink); background-color: var(--green); }
+    .shift-siang { color: var(--gold-ink); background-color: var(--gold); }
+    .shift-malam { color: var(--blue-ink); background-color: var(--blue); }
+    .shift-libur { color: var(--rest-ink); background-color: var(--rest); }
+    .table-footer { min-height: 57px; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px 18px; border-top: 1px solid var(--line); }
+    .legend { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .legend-item { display: inline-flex; align-items: center; gap: 6px; color: #59665f; font-size: 10px; white-space: nowrap; }
+    .legend-swatch { width: 8px; height: 8px; border-radius: 2px; }
+    .legend-swatch.pagi { background: #77a680; }
+    .legend-swatch.siang { background: #d3aa4c; }
+    .legend-swatch.malam { background: #7295ad; }
+    .legend-swatch.libur { background: #b1bab3; }
+    .saved-status { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 10px; white-space: nowrap; }
+    .saved-status svg { width: 13px; height: 13px; color: #6e9b69; }
+    .dialog { width: min(420px, calc(100% - 32px)); padding: 0; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); box-shadow: 0 24px 80px rgba(19, 42, 31, .22); }
+    .dialog::backdrop { background: rgba(20, 37, 31, .36); backdrop-filter: blur(2px); }
+    .dialog-inner { padding: 22px; }
+    .dialog h2 { margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 20px; }
+    .dialog p { margin: 6px 0 19px; color: var(--muted); font-size: 12px; }
+    .field { display: block; margin-bottom: 14px; }
+    .field span { display: block; margin-bottom: 6px; color: #57645d; font-size: 11px; font-weight: 700; }
+    .field input { width: 100%; height: 40px; padding: 0 11px; border: 1px solid var(--line); border-radius: 6px; outline: 0; }
+    .field input:focus { border-color: #789688; box-shadow: 0 0 0 3px rgba(28, 73, 63, .09); }
+    .dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; }
+    .toast { position: fixed; right: 24px; bottom: 24px; z-index: 5; display: flex; align-items: center; gap: 9px; max-width: calc(100% - 32px); padding: 12px 15px; border: 1px solid #d8e4d9; border-radius: 7px; color: var(--forest-deep); background: #fff; box-shadow: 0 10px 30px rgba(25, 49, 37, .12); font-size: 12px; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .18s, transform .18s; }
+    .toast.visible { opacity: 1; transform: translateY(0); }
+    .toast svg { width: 16px; height: 16px; color: #69a16b; }
+    .service-table { min-width: 830px; }
+    .service-table thead th { height: 52px; color: var(--forest); font-size: 10px; }
+    .service-table thead th:first-child { width: 72px; padding-left: 10px; text-align: center; }
+    .service-table thead th:nth-child(2) { width: 22%; }
+    .service-table thead th:nth-child(n + 3) { width: 24%; }
+    .service-table tbody td { height: 64px; padding: 8px 10px; text-align: left; }
+    .service-table tbody td:first-child { padding: 8px 10px; text-align: center; }
+    .service-table tbody tr:last-child td { border-bottom: 0; }
+    .number-cell { display: flex; align-items: center; justify-content: center; gap: 7px; }
+    .row-number { color: var(--muted); font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 600; }
+    .row-delete { width: 26px; height: 26px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 5px; color: #a1aaa4; background: transparent; }
+    .row-delete:hover { color: #a63e31; background: #faece8; }
+    .row-delete svg { width: 14px; height: 14px; }
+    .service-input { width: 100%; min-width: 0; height: 38px; padding: 0 9px; border: 1px solid transparent; border-radius: 5px; outline: 0; color: var(--ink); background: transparent; font-size: 12px; }
+    .service-input::placeholder { color: #a0aaa3; }
+    .service-input:focus { border-color: #a6b9aa; background: #fff; box-shadow: 0 0 0 2px rgba(28, 73, 63, .06); }
+    .period-control { display: flex; align-items: center; gap: 12px; }
+    .period-control label { color: var(--muted); font-size: 11px; font-weight: 700; white-space: nowrap; }
+    .period-control input { width: min(340px, 48vw); height: 36px; padding: 0 10px; border: 1px solid var(--line); border-radius: 6px; outline: 0; color: var(--ink); background: #fff; font-size: 12px; }
+    .period-control input:focus { border-color: #8da698; }
+    .service-count { margin: 0; color: var(--muted); font-size: 11px; white-space: nowrap; }
+    .empty-row { height: 130px !important; color: var(--muted); font-size: 12px; text-align: center !important; }
+    .saved-status { white-space: normal; }
+    @media (max-width: 760px) {
+      .shell { padding: 0 18px 32px; }
+      .topbar { min-height: 64px; }
+      main { padding-top: 25px; }
+      .heading-row { align-items: flex-start; flex-direction: column; gap: 18px; }
+      .primary-actions { width: 100%; }
+      .primary-actions .button { flex: 1; }
+      .metrics { gap: 8px; }
+      .metric { min-height: 84px; padding: 12px 11px; }
+      .metric-label { max-width: 84px; font-size: 9px; line-height: 1.3; }
+      .metric-value { font-size: 23px; }
+      .metric-icon { width: 29px; height: 29px; }
+      .metric-icon svg { width: 15px; height: 15px; }
+      .panel-toolbar { align-items: flex-start; flex-direction: column; }
+      .period-control { width: 100%; align-items: flex-start; flex-direction: column; gap: 6px; }
+      .period-control input { width: 100%; }
+      .week-controls { width: 100%; }
+      .week-label { min-width: 0; flex: 1; }
+      .toolbar-actions { width: 100%; }
+      .toolbar-actions .button { flex: 1; }
+      .table-footer { align-items: flex-start; flex-direction: column; }
+      .legend { gap: 11px; }
+    }
+    @media (max-width: 430px) {
+      .shell { padding-right: 12px; padding-left: 12px; }
+      .top-meta { font-size: 10px; }
+      .brand-name { font-size: 15px; }
+      .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .metric { align-items: flex-start; flex-direction: column-reverse; gap: 6px; }
+      .metric-icon { width: 25px; height: 25px; }
+      .metric-value { font-size: 21px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Jadwal Pelayanan PPGT Jemaat Burake Rampak">
+        <span class="brand-mark"><i data-lucide="church"></i><img id="site-logo" src="logo/logo.png" alt="Logo PPGT Jemaat Burake Rampak"></span>
+        <span class="brand-name">PPGT <span>Burake Rampak</span></span>
+      </a>
+      <div class="top-meta"><span class="live-dot"></span><span>Jemaat Burake Rampak</span><span aria-hidden="true">·</span><span>Data tersimpan di perangkat ini</span></div>
+    </header>
+    <main>
+      <section class="heading-row" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow"><i data-lucide="calendar-days"></i> Persekutuan Pemuda Gereja Toraja</p>
+          <h1 id="page-title">Jadwal pelayanan</h1>
+          <p class="subtitle">PPGT Jemaat Burake Rampak</p>
+        </div>
+        <div class="primary-actions">
+          <button class="button" id="add-service" type="button"><i data-lucide="plus"></i> Tambah jadwal</button>
+          <button class="button button-primary" id="download-pdf" type="button"><i data-lucide="file-down"></i> Unduh PDF</button>
+        </div>
+      </section>
+
+      <section class="metrics" aria-label="Ringkasan jadwal pelayanan">
+        <article class="metric"><div><p class="metric-label">Jumlah jadwal</p><p class="metric-value" id="service-count">0</p></div><span class="metric-icon"><i data-lucide="calendar-check"></i></span></article>
+        <article class="metric"><div><p class="metric-label">Nama pelayan terisi</p><p class="metric-value" id="assigned-count">0</p></div><span class="metric-icon"><i data-lucide="users-round"></i></span></article>
+        <article class="metric"><div><p class="metric-label">Tempat ibadah</p><p class="metric-value" id="place-count">0</p></div><span class="metric-icon"><i data-lucide="map-pin"></i></span></article>
+      </section>
+
+      <section class="schedule-panel" aria-label="Daftar jadwal pelayanan">
+        <div class="panel-toolbar">
+          <div class="period-control">
+            <label for="period-input">Periode jadwal</label>
+            <input id="period-input" type="text" maxlength="60" placeholder="Contoh: Minggu, 12 Oktober 2026">
+          </div>
+          <p class="service-count" id="panel-service-count">0 jadwal pelayanan</p>
+        </div>
+        <div class="table-scroll" tabindex="0" aria-label="Tabel jadwal pelayanan, geser horizontal pada layar kecil">
+          <table class="service-table">
+            <thead><tr><th scope="col">No</th><th scope="col">Tempat Ibadah</th><th scope="col">Pembawa Acara</th><th scope="col">Pelayan 1</th><th scope="col">Pelayan 2</th></tr></thead>
+            <tbody id="schedule-body"></tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <div class="saved-status"><i data-lucide="save"></i><span>Jadwal tersimpan otomatis di perangkat ini</span></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><i data-lucide="circle-check"></i><span></span></div>
+
+  <script>
+    const STORAGE_KEY = 'ppgt-pelayanan-v1';
+    const SERVICE_FIELDS = ['place', 'presenter', 'minister1', 'minister2'];
+    const FIELD_LABELS = { place: 'Tempat Ibadah', presenter: 'Pembawa Acara', minister1: 'Pelayan 1', minister2: 'Pelayan 2' };
+    let state = loadState();
+    let toastTimer;
+    const body = document.querySelector('#schedule-body');
+    const periodInput = document.querySelector('#period-input');
+    const toast = document.querySelector('#toast');
+    const siteLogo = document.querySelector('#site-logo');
+
+    function showSiteLogo() {
+      siteLogo.closest('.brand-mark').classList.add('has-logo');
+    }
+
+    siteLogo.addEventListener('load', showSiteLogo);
+    siteLogo.addEventListener('error', () => siteLogo.remove());
+    if (siteLogo.complete) {
+      if (siteLogo.naturalWidth) showSiteLogo();
+      else siteLogo.remove();
+    }
+
+    function loadState() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (saved && Array.isArray(saved.services)) return { period: typeof saved.period === 'string' ? saved.period : '', services: saved.services };
+      } catch (error) {
+        console.warn('Jadwal tersimpan tidak dapat dibaca.', error);
+      }
+      return { period: '', services: [] };
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (error) {
+        console.warn('Perubahan jadwal tidak dapat disimpan.', error);
+      }
+    }
+
+    function escapeAttribute(value) {
+      return String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
+    }
+
+    function render() {
+      periodInput.value = state.period;
+      body.innerHTML = state.services.length
+        ? state.services.map((service, index) => `
+          <tr data-service-id="${escapeAttribute(service.id)}">
+            <td><div class="number-cell"><span class="row-number">${String(index + 1).padStart(2, '0')}</span><button class="row-delete" type="button" aria-label="Hapus jadwal nomor ${index + 1}" title="Hapus jadwal"><i data-lucide="trash-2"></i></button></div></td>
+            ${SERVICE_FIELDS.map((field) => `<td><input class="service-input" data-field="${field}" aria-label="${FIELD_LABELS[field]} nomor ${index + 1}" value="${escapeAttribute(service[field] || '')}" placeholder="${FIELD_LABELS[field]}" maxlength="80"></td>`).join('')}
+          </tr>`).join('')
+        : '<tr><td class="empty-row" colspan="5">Belum ada jadwal pelayanan. Tambahkan jadwal untuk mulai mengisi.</td></tr>';
+      renderMetrics();
+      if (window.lucide) window.lucide.createIcons();
+    }
+
+    function renderMetrics() {
+      const assigned = state.services.reduce((total, service) => total + ['presenter', 'minister1', 'minister2'].filter((field) => String(service[field] || '').trim()).length, 0);
+      const places = new Set(state.services.map((service) => String(service.place || '').trim()).filter(Boolean));
+      document.querySelector('#service-count').textContent = state.services.length;
+      document.querySelector('#assigned-count').textContent = assigned;
+      document.querySelector('#place-count').textContent = places.size;
+      document.querySelector('#panel-service-count').textContent = `${state.services.length} jadwal pelayanan`;
+    }
+
+    function showToast(message) {
+      toast.querySelector('span').textContent = message;
+      toast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('visible'), 2600);
+    }
+
+    periodInput.addEventListener('input', () => {
+      state.period = periodInput.value;
+      saveState();
+    });
+
+    document.querySelector('#add-service').addEventListener('click', () => {
+      const service = { id: `service-${Date.now()}`, place: '', presenter: '', minister1: '', minister2: '' };
+      state.services.push(service);
+      saveState();
+      render();
+      body.querySelector(`[data-service-id="${service.id}"] .service-input`).focus();
+    });
+
+    body.addEventListener('input', (event) => {
+      const input = event.target.closest('.service-input');
+      if (!input) return;
+      const row = input.closest('tr[data-service-id]');
+      const service = state.services.find((item) => item.id === row.dataset.serviceId);
+      if (!service) return;
+      service[input.dataset.field] = input.value;
+      saveState();
+      renderMetrics();
+    });
+
+    body.addEventListener('click', (event) => {
+      const button = event.target.closest('.row-delete');
+      if (!button) return;
+      const row = button.closest('tr[data-service-id]');
+      const service = state.services.find((item) => item.id === row.dataset.serviceId);
+      if (!service || !confirm('Hapus jadwal pelayanan ini?')) return;
+      state.services = state.services.filter((item) => item.id !== service.id);
+      saveState();
+      render();
+      showToast('Jadwal pelayanan dihapus.');
+    });
+
+    function pdfText(value) {
+      return String(value).normalize('NFKD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[–—]/g, '-')
+        .replace(/[·•]/g, '-')
+        .replace(/[^\x20-\x7E]/g, '')
+        .replace(/\\/g, '\\\\')
+        .replace(/\(/g, '\\(')
+        .replace(/\)/g, '\\)');
+    }
+
+    function pdfColor(color) {
+      return color.map((channel) => (channel / 255).toFixed(3)).join(' ');
+    }
+
+    function buildPdfPage(services, pageNumber, pageCount, hasLogo = false) {
+      const commands = [];
+      const pageHeight = 842;
+      const margin = 34;
+      const tableWidth = 527;
+      const columnWidths = [42, 113, 125, 123.5, 123.5];
+      const columnLabels = ['No', 'Tempat Ibadah', 'Pembawa Acara', 'Pelayan 1', 'Pelayan 2'];
+      const headerTop = 150;
+      const headerHeight = 36;
+      const rowHeight = 36;
+      const rect = (x, top, width, height, color) => commands.push(`${pdfColor(color)} rg ${x.toFixed(2)} ${(pageHeight - top - height).toFixed(2)} ${width.toFixed(2)} ${height.toFixed(2)} re f`);
+      const line = (x1, top1, x2, top2, color = [220, 228, 221], width = 0.6) => commands.push(`${pdfColor(color)} RG ${width} w ${x1.toFixed(2)} ${(pageHeight - top1).toFixed(2)} m ${x2.toFixed(2)} ${(pageHeight - top2).toFixed(2)} l S`);
+      const text = (value, x, top, size, color = [40, 56, 48], bold = false, align = 'left') => {
+        const cleanValue = pdfText(value);
+        const textX = align === 'center' ? x - cleanValue.length * size * 0.25 : align === 'right' ? x - cleanValue.length * size * 0.5 : x;
+        commands.push(`${pdfColor(color)} rg BT /${bold ? 'F2' : 'F1'} ${size} Tf 1 0 0 1 ${textX.toFixed(2)} ${(pageHeight - top - size).toFixed(2)} Tm (${cleanValue}) Tj ET`);
+      };
+
+      rect(0, 0, 595, 9, [28, 73, 63]);
+      rect(margin, 29, 42, 42, [28, 73, 63]);
+      if (hasLogo) {
+        commands.push(`q 42 0 0 42 ${margin} ${pageHeight - 29 - 42} cm /Logo Do Q`);
+      } else {
+        text('PPGT', margin + 21, 44, 10, [255, 255, 255], true, 'center');
+      }
+      text('PERSEKUTUAN PEMUDA GEREJA TORAJA', 297.5, 28, 8, [92, 105, 97], true, 'center');
+      text('JADWAL PELAYANAN', 297.5, 43, 19, [28, 73, 63], true, 'center');
+      text('JEMAAT BURAKE RAMPAK', 297.5, 69, 11, [40, 56, 48], true, 'center');
+      line(margin, 91, 561, 91, [28, 73, 63], 1.2);
+      line(margin, 94, 561, 94, [217, 180, 92], 0.6);
+      text(`Periode: ${state.period.trim() || 'Belum ditentukan'}`, 297.5, 110, 9, [92, 105, 97], false, 'center');
+      text(`Dicetak ${new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date())}`, 297.5, 126, 8, [130, 140, 133], false, 'center');
+
+      rect(margin, headerTop, tableWidth, headerHeight, [28, 73, 63]);
+      let columnX = margin;
+      columnLabels.forEach((label, index) => {
+        const width = columnWidths[index];
+        text(label, index === 0 ? columnX + width / 2 : columnX + 8, headerTop + 13, 8, [255, 255, 255], true, index === 0 ? 'center' : 'left');
+        columnX += width;
+      });
+      services.forEach((service, rowIndex) => {
+        const top = headerTop + headerHeight + rowIndex * rowHeight;
+        if (rowIndex % 2 === 1) rect(margin, top, tableWidth, rowHeight, [247, 249, 246]);
+        const values = [String(rowIndex + 1).padStart(2, '0'), service.place, service.presenter, service.minister1, service.minister2];
+        let cellX = margin;
+        values.forEach((value, columnIndex) => {
+          const width = columnWidths[columnIndex];
+          const fontSize = 8;
+          const maxCharacters = Math.floor((width - 16) / (fontSize * 0.52));
+          let displayValue = String(value || '').trim();
+          if (displayValue.length > maxCharacters) displayValue = `${displayValue.slice(0, maxCharacters - 2)}..`;
+          text(displayValue, columnIndex === 0 ? cellX + width / 2 : cellX + 8, top + 13, fontSize, columnIndex === 0 ? [92, 105, 97] : [40, 56, 48], columnIndex === 0, columnIndex === 0 ? 'center' : 'left');
+          cellX += width;
+        });
+        line(margin, top + rowHeight, margin + tableWidth, top + rowHeight);
+      });
+      if (services.length === 0) {
+        text('Belum ada jadwal pelayanan.', 297.5, headerTop + headerHeight + 18, 9, [117, 130, 124], false, 'center');
+        line(margin, headerTop + headerHeight + rowHeight, margin + tableWidth, headerTop + headerHeight + rowHeight);
+      }
+      let boundaryX = margin;
+      line(boundaryX, headerTop, boundaryX, headerTop + headerHeight + Math.max(services.length, 1) * rowHeight);
+      columnWidths.forEach((width) => {
+        boundaryX += width;
+        line(boundaryX, headerTop, boundaryX, headerTop + headerHeight + Math.max(services.length, 1) * rowHeight);
+      });
+      line(margin, headerTop, margin + tableWidth, headerTop);
+      if (pageNumber === pageCount) {
+        text('Kerohanian,', 177, 673, 9, [40, 56, 48], false, 'center');
+        text('Mengetahui,', 418, 673, 9, [40, 56, 48], false, 'center');
+        line(125, 741, 229, 741, [130, 140, 133], 0.7);
+        line(366, 741, 470, 741, [130, 140, 133], 0.7);
+        text('Malvin Takgu', 177, 750, 9, [40, 56, 48], true, 'center');
+        text('Ketua Vardayson', 418, 750, 9, [40, 56, 48], true, 'center');
+      }
+      const footerTop = 800;
+      line(margin, footerTop - 12, margin + tableWidth, footerTop - 12, [220, 228, 221]);
+      text('PPGT Jemaat Burake Rampak', margin, footerTop, 8, [117, 130, 124]);
+      text(`Halaman ${pageNumber} dari ${pageCount}`, margin + tableWidth, footerTop, 8, [117, 130, 124], false, 'right');
+      return commands.join('\n');
+    }
+
+    function createPdfFile(pageContents, logo = null) {
+      const objects = [];
+      objects[1] = '<< /Type /Catalog /Pages 2 0 R >>';
+      const firstPageId = logo ? 6 : 5;
+      const pageIds = pageContents.map((_, index) => `${firstPageId + index * 2} 0 R`).join(' ');
+      objects[2] = `<< /Type /Pages /Kids [${pageIds}] /Count ${pageContents.length} >>`;
+      objects[3] = '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>';
+      objects[4] = '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>';
+      if (logo) {
+        objects[5] = {
+          dictionary: `<< /Type /XObject /Subtype /Image /Width ${logo.width} /Height ${logo.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${logo.bytes.length} >>`,
+          stream: logo.bytes
+        };
+      }
+      pageContents.forEach((content, index) => {
+        const pageId = firstPageId + index * 2;
+        const imageResource = logo ? ' /XObject << /Logo 5 0 R >>' : '';
+        objects[pageId] = `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >>${imageResource} >> /Contents ${pageId + 1} 0 R >>`;
+        objects[pageId + 1] = `<< /Length ${content.length} >>\nstream\n${content}\nendstream`;
+      });
+      const encoder = new TextEncoder();
+      const chunks = [encoder.encode('%PDF-1.4\n')];
+      const offsets = [0];
+      let byteLength = chunks[0].length;
+      for (let id = 1; id < objects.length; id += 1) {
+        offsets[id] = byteLength;
+        const prefix = encoder.encode(`${id} 0 obj\n`);
+        const object = objects[id];
+        const body = typeof object === 'string'
+          ? encoder.encode(object)
+          : [encoder.encode(`${object.dictionary}\nstream\n`), object.stream, encoder.encode('\nendstream')];
+        const suffix = encoder.encode('\nendobj\n');
+        const parts = Array.isArray(body) ? [prefix, ...body, suffix] : [prefix, body, suffix];
+        chunks.push(...parts);
+        byteLength += parts.reduce((total, part) => total + part.length, 0);
+      }
+      const xrefOffset = byteLength;
+      let xref = `xref\n0 ${objects.length}\n0000000000 65535 f \n`;
+      for (let id = 1; id < objects.length; id += 1) xref += `${String(offsets[id]).padStart(10, '0')} 00000 n \n`;
+      xref += `trailer\n<< /Size ${objects.length} /Root 1 0 R >>\nstartxref\n${xrefOffset}\n%%EOF`;
+      chunks.push(encoder.encode(xref));
+      const output = new Uint8Array(chunks.reduce((total, chunk) => total + chunk.length, 0));
+      let offset = 0;
+      chunks.forEach((chunk) => {
+        output.set(chunk, offset);
+        offset += chunk.length;
+      });
+      return new Blob([output], { type: 'application/pdf' });
+    }
+
+    async function loadPdfLogo() {
+      const image = new Image();
+      image.src = new URL('logo/logo.png', window.location.href).href;
+      try {
+        await image.decode();
+        const canvas = document.createElement('canvas');
+        canvas.width = image.naturalWidth;
+        canvas.height = image.naturalHeight;
+        const context = canvas.getContext('2d');
+        context.fillStyle = '#ffffff';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(image, 0, 0);
+        const encoded = atob(canvas.toDataURL('image/jpeg', 0.92).split(',')[1]);
+        const bytes = Uint8Array.from(encoded, (character) => character.charCodeAt(0));
+        return { bytes, width: canvas.width, height: canvas.height };
+      } catch (error) {
+        return null;
+      }
+    }
+
+    document.querySelector('#download-pdf').addEventListener('click', async () => {
+      const button = document.querySelector('#download-pdf');
+      button.disabled = true;
+      const logo = await loadPdfLogo();
+      const pageSize = 12;
+      const pageCount = Math.max(1, Math.ceil(state.services.length / pageSize));
+      const pageContents = Array.from({ length: pageCount }, (_, index) =>
+        buildPdfPage(state.services.slice(index * pageSize, (index + 1) * pageSize), index + 1, pageCount, Boolean(logo))
+      );
+      const fileUrl = URL.createObjectURL(createPdfFile(pageContents, logo));
+      const link = document.createElement('a');
+      link.href = fileUrl;
+      link.download = 'jadwal-pelayanan-ppgt-jemaat-burake-rampak.pdf';
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(fileUrl), 1000);
+      button.disabled = false;
+      showToast(logo ? 'Jadwal dan logo berhasil diunduh sebagai PDF.' : 'Jadwal PDF dibuat. Logo tidak ditemukan di folder logo.');
+    });
+
+    render();
+  </script>
+</body>
+</html>
